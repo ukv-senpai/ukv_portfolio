@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Utkrisht Kumar Verma — Personnel File</title>
+<meta name="description" content="Utkrisht Kumar Verma — Technical Analyst, Production Support & Incident Command." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;900&family=Oswald:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#14171A;
+    --gunmetal:#20262A;
+    --gunmetal-2:#2B3236;
+    --oxide:#2F5233;
+    --oxide-bright:#4C7A4F;
+    --iron-red:#8C2F2F;
+    --iron-red-bright:#B23A3A;
+    --bronze:#B8925A;
+    --parchment:#E8E4DC;
+    --parchment-dim:#9AA09C;
+    --line:#3A4144;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--void);
+    color:var(--parchment);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  ::selection{ background:var(--iron-red); color:var(--parchment); }
+
+  /* ---------- background texture ---------- */
+  .grain{
+    position:fixed; inset:0; pointer-events:none; z-index:2;
+    opacity:0.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .scanlines{
+    position:fixed; inset:0; pointer-events:none; z-index:3;
+    background:repeating-linear-gradient(to bottom, rgba(0,0,0,0.0) 0px, rgba(0,0,0,0.0) 2px, rgba(0,0,0,0.12) 3px);
+    opacity:0.35;
+  }
+  .vignette{
+    position:fixed; inset:0; pointer-events:none; z-index:1;
+    background:radial-gradient(ellipse at center, rgba(0,0,0,0) 45%, rgba(0,0,0,0.55) 100%);
+  }
+
+  /* ---------- boot sequence ---------- */
+  #boot{
+    position:fixed; inset:0; z-index:100; background:var(--void);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace; color:var(--oxide-bright);
+    transition:opacity 0.8s ease, visibility 0.8s ease;
+  }
+  #boot.hidden{ opacity:0; visibility:hidden; }
+  #boot-text{ font-size:13px; letter-spacing:0.04em; white-space:pre-wrap; max-width:520px; padding:0 24px; }
+  #boot-text .cursor{ display:inline-block; width:8px; height:14px; background:var(--oxide-bright); animation:blink 1s steps(1) infinite; vertical-align:middle; margin-left:2px; }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  /* ---------- layout ---------- */
+  .wrap{ max-width:920px; margin:0 auto; padding:0 32px; }
+  section{ position:relative; z-index:4; padding:120px 0; }
+
+  .eyebrow{
+    font-family:'Oswald', sans-serif; font-weight:600; letter-spacing:0.22em;
+    text-transform:uppercase; font-size:12.5px; color:var(--bronze);
+    display:flex; align-items:center; gap:12px; margin-bottom:28px;
+  }
+  .eyebrow::before{ content:""; width:34px; height:1px; background:var(--bronze); display:inline-block; }
+  .eyebrow .stamp-tag{
+    margin-left:auto; font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.08em;
+    color:var(--oxide-bright); border:1px solid var(--oxide); padding:3px 8px; border-radius:2px;
+  }
+
+  h2.title{
+    font-family:'Cinzel', serif; font-weight:700; text-transform:uppercase;
+    font-size:clamp(28px, 4vw, 42px); letter-spacing:0.03em; color:var(--parchment);
+    margin-bottom:28px;
+  }
+
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- hero ---------- */
+  #hero{
+    min-height:100vh; display:flex; flex-direction:column; align-items:flex-start; justify-content:center;
+    padding-top:80px;
+    background:
+      radial-gradient(ellipse 900px 500px at 80% 15%, rgba(140,47,47,0.16), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 10% 85%, rgba(47,82,51,0.18), transparent 60%),
+      var(--void);
+  }
+  .file-stamp{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.16em;
+    color:var(--iron-red-bright); border:1px solid var(--iron-red); padding:6px 12px;
+    text-transform:uppercase; margin-bottom:36px; border-radius:2px;
+    background:rgba(140,47,47,0.08);
+  }
+  h1.name{
+    font-family:'Cinzel', serif; font-weight:900; text-transform:uppercase;
+    font-size:clamp(40px, 8vw, 88px); line-height:0.98; letter-spacing:0.01em;
+    color:var(--parchment);
+    text-shadow: 0 0 40px rgba(76,122,79,0.25);
+  }
+  .role-line{
+    font-family:'Oswald', sans-serif; font-weight:500; letter-spacing:0.14em; text-transform:uppercase;
+    font-size:clamp(14px, 2vw, 19px); color:var(--oxide-bright); margin-top:22px;
+  }
+  .tagline{
+    font-family:'IBM Plex Sans', sans-serif; font-style:italic; color:var(--parchment-dim);
+    font-size:16px; margin-top:22px; max-width:520px; border-left:2px solid var(--bronze); padding-left:16px;
+  }
+  .hero-meta{
+    margin-top:56px; display:flex; gap:36px; flex-wrap:wrap;
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--parchment-dim);
+  }
+  .hero-meta span{ color:var(--bronze); }
+  .scroll-cue{
+    position:absolute; bottom:40px; left:32px; font-family:'Oswald',sans-serif; letter-spacing:0.18em;
+    font-size:11px; text-transform:uppercase; color:var(--parchment-dim);
+    display:flex; align-items:center; gap:10px;
+  }
+  .scroll-cue::after{ content:"↓"; animation:nudge 1.6s ease-in-out infinite; }
+  @keyframes nudge{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(6px);} }
+
+  /* ---------- briefing ---------- */
+  #briefing p{ font-size:17px; color:var(--parchment-dim); max-width:680px; }
+  #briefing p strong{ color:var(--parchment); font-weight:600; }
+
+  /* ---------- field record ---------- */
+  .record-card{
+    border:1px solid var(--line); background:linear-gradient(180deg, rgba(43,50,54,0.4), rgba(43,50,54,0.1));
+    border-radius:4px; padding:36px; position:relative; overflow:hidden;
+  }
+  .record-card::before{
+    content:""; position:absolute; top:0; left:0; width:3px; height:100%; background:var(--iron-red);
+  }
+  .record-head{ display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px; margin-bottom:6px; }
+  .record-op{ font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; font-size:20px; color:var(--parchment); }
+  .record-dates{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--oxide-bright); }
+  .record-org{ color:var(--parchment-dim); font-size:14px; margin-bottom:24px; }
+  .record-list{ list-style:none; display:flex; flex-direction:column; gap:14px; margin-bottom:28px; }
+  .record-list li{ padding-left:22px; position:relative; color:var(--parchment-dim); font-size:15px; }
+  .record-list li::before{ content:"▸"; position:absolute; left:0; color:var(--iron-red-bright); }
+  .stat-row{ display:flex; gap:32px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:24px; }
+  .stat{ }
+  .stat-num{ font-family:'Cinzel',serif; font-weight:700; font-size:36px; color:var(--oxide-bright); line-height:1; }
+  .stat-label{ font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--parchment-dim); margin-top:8px; }
+
+  /* ---------- arsenal ---------- */
+  .tag-grid{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:40px; }
+  .tag{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:0.02em;
+    border:1px solid var(--line); color:var(--parchment); padding:8px 14px; border-radius:2px;
+    background:var(--gunmetal); transition:border-color 0.25s ease, color 0.25s ease;
+  }
+  .tag:hover{ border-color:var(--oxide-bright); color:var(--oxide-bright); }
+  .subhead{ font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--parchment-dim); margin-bottom:14px; }
+
+  /* ---------- dark period ---------- */
+  #dark-period{
+    background:linear-gradient(180deg, transparent, rgba(140,47,47,0.05) 30%, rgba(140,47,47,0.05) 70%, transparent);
+  }
+  #dark-period .record-card::before{ background:var(--oxide-bright); }
+  #dark-period p{ color:var(--parchment-dim); font-size:16px; max-width:680px; margin-bottom:16px; }
+  #dark-period p strong{ color:var(--parchment); }
+
+  /* ---------- origin / credentials ---------- */
+  .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:48px; }
+  @media (max-width:720px){ .two-col{ grid-template-columns:1fr; } }
+  .cred-block{ border-bottom:1px solid var(--line); padding-bottom:18px; margin-bottom:18px; }
+  .cred-title{ font-family:'Oswald',sans-serif; font-weight:600; font-size:15px; color:var(--parchment); text-transform:uppercase; letter-spacing:0.03em; }
+  .cred-sub{ font-size:13.5px; color:var(--parchment-dim); margin-top:4px; }
+
+  /* ---------- transmission ---------- */
+  #transmission{ text-align:left; }
+  .channel-grid{ display:flex; flex-wrap:wrap; gap:14px; margin-top:32px; margin-bottom:40px; }
+  .channel{
+    display:flex; align-items:center; gap:10px; border:1px solid var(--line); padding:12px 18px;
+    border-radius:2px; font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--parchment-dim);
+    text-decoration:none; transition:border-color 0.25s ease, color 0.25s ease;
+  }
+  .channel:hover{ border-color:var(--iron-red-bright); color:var(--parchment); }
+  .channel b{ color:var(--bronze); font-weight:500; }
+  .cta-btn{
+    display:inline-block; font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.1em;
+    text-transform:uppercase; font-size:14px; color:var(--void); background:var(--bronze);
+    padding:16px 32px; border-radius:2px; text-decoration:none; border:none; cursor:pointer;
+    transition:background 0.25s ease, transform 0.25s ease;
+  }
+  .cta-btn:hover{ background:var(--oxide-bright); transform:translateY(-2px); }
+
+  footer{
+    padding:40px 0 60px; text-align:left; font-family:'IBM Plex Mono',monospace;
+    font-size:11px; color:var(--parchment-dim); border-top:1px solid var(--line); opacity:0.7;
+  }
+
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--bronze); outline-offset:3px; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .reveal{ transition:none; opacity:1; transform:none; }
+    .scanlines, .scroll-cue::after, #boot-text .cursor{ animation:none; }
+  }
+
+  @media (max-width:600px){
+    section{ padding:80px 0; }
+    .stat-row{ gap:22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+<div class="scanlines"></div>
+<div class="vignette"></div>
+
+<div id="boot">
+  <div id="boot-text"></div>
+</div>
+
+<main>
+
+  <section id="hero">
+    <div class="wrap">
+      <div class="file-stamp">Personnel Dossier — Clearance: Recruiter</div>
+      <h1 class="name">Utkrisht<br>Kumar Verma</h1>
+      <div class="role-line">Technical Analyst — Production Support &amp; Incident Command</div>
+      <p class="tagline">"Systems fail quietly. I find out why before anyone else does."</p>
+      <div class="hero-meta">
+        <div><span>Base —</span> New Delhi, India</div>
+        <div><span>Status —</span> Available, on-site or remote</div>
+        <div><span>Languages —</span> English · Hindi (C2)</div>
+      </div>
+    </div>
+    <div class="scroll-cue">Open File</div>
+  </section>
+
+  <section id="briefing">
+    <div class="wrap reveal">
+      <div class="eyebrow">File 01 — Briefing<span class="stamp-tag">Verified</span></div>
+      <h2 class="title">Summary</h2>
+      <p><strong>Technical Analyst with production support experience in banking and financial services</strong>, specializing in system monitoring, SQL-based root-cause analysis, and process optimization. Track record of reducing processing errors and improving transaction accuracy through data-driven troubleshooting — backed by strong analytical writing, self-management, and stakeholder communication, sharpened through a period of structured self-study. Ready to apply that discipline to technical operations, monitoring, incident management, customer success, or support engineering — on-site or remote.</p>
+    </div>
+  </section>
+
+  <section id="field-record">
+    <div class="wrap reveal">
+      <div class="eyebrow">File 02 — Field Record<span class="stamp-tag">Active Duty</span></div>
+      <h2 class="title">Experience</h2>
+      <div class="record-card">
+        <div class="record-head">
+          <div class="record-op">Operation MAPS / FXGCC</div>
+          <div class="record-dates">Jul 2021 — Oct 2022</div>
+        </div>
+        <div class="record-org">Technical Analyst, Production Support Team · Bank of America · New Delhi, India</div>
+        <ul class="record-list">
+          <li>Led and supported production support for Market Applications on Production Services (MAPS), tracking system health across the FXGCC platform using BOB Monitor and AlertWatch to sustain uptime and platform reliability.</li>
+          <li>Performed SQL-based root-cause analysis on financial data and transaction discrepancies, analyzing and optimizing workflows.</li>
+          <li>Built and maintained Advanced Excel trackers and health-check reports used by cross-functional teams to monitor incident volume, resolution time, and recurring issue patterns.</li>
+          <li>Collaborated across technology and business teams to streamline escalation workflows, reducing time-to-resolution for critical production issues.</li>
+          <li>Provided first-level technical support to business users, triaging incidents and resolving inquiries in line with SLA targets.</li>
+        </ul>
+        <div class="stat-row">
+          <div class="stat"><div class="stat-num">15%</div><div class="stat-label">Reduction in processing errors</div></div>
+          <div class="stat"><div class="stat-num">2</div><div class="stat-label">Monitoring systems owned</div></div>
+          <div class="stat"><div class="stat-num">SLA</div><div class="stat-label">Targets consistently met</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="arsenal">
+    <div class="wrap reveal">
+      <div class="eyebrow">File 03 — Arsenal<span class="stamp-tag">Equipped</span></div>
+      <h2 class="title">Skills</h2>
+      <div class="subhead">Technical</div>
+      <div class="tag-grid">
+        <span class="tag">SQL</span>
+        <span class="tag">Advanced Excel</span>
+        <span class="tag">Excel with AI</span>
+        <span class="tag">BOB Monitor</span>
+        <span class="tag">AlertWatch</span>
+        <span class="tag">FXGCC</span>
+        <span class="tag">RCM / CR</span>
+        <span class="tag">Incident &amp; Ticket Management</span>
+        <span class="tag">Root Cause Analysis</span>
+        <span class="tag">ITSM Fundamentals</span>
+      </div>
+      <div class="subhead">Core Competencies</div>
+      <div class="tag-grid">
+        <span class="tag">Process Optimization</span>
+        <span class="tag">Risk Assessment</span>
+        <span class="tag">Stakeholder Management</span>
+        <span class="tag">Technical Documentation</span>
+        <span class="tag">Executive Communication</span>
+        <span class="tag">Cross-Functional Collaboration</span>
+        <span class="tag">Remote Collaboration &amp; Self-Management</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="dark-period">
+    <div class="wrap reveal">
+      <div class="eyebrow">File 04 — The Dark Period<span class="stamp-tag">2022 – 2026</span></div>
+      <h2 class="title">Career Sabbatical</h2>
+      <div class="record-card">
+        <p><strong>Went dark. Not absent — training.</strong> Took a planned career break to prepare for the UPSC Civil Services Examination: a self-directed campaign that built analytical reasoning, structured problem-solving, discipline, current-affairs research, and long-form communication under sustained pressure.</p>
+        <p>Technical fluency was maintained throughout via continued self-study. Now returning to full-time operations — briefed, sharpened, and ready for technical operations, monitoring, incident management, customer success, or support engineering.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="origin">
+    <div class="wrap reveal">
+      <div class="eyebrow">File 05 — Origin &amp; Credentials<span class="stamp-tag">On Record</span></div>
+      <h2 class="title">Origin &amp; Credentials</h2>
+      <div class="two-col">
+        <div>
+          <div class="subhead">Education</div>
+          <div class="cred-block">
+            <div class="cred-title">B.Tech — Electrical &amp; Electronics Engineering</div>
+            <div class="cred-sub">SRM Institute of Science and Technology · June 2021</div>
+          </div>
+        </div>
+        <div>
+          <div class="subhead">Certifications</div>
+          <div class="cred-block">
+            <div class="cred-title">Operations Management: Organization and Analysis</div>
+            <div class="cred-sub">Coursera — University of Illinois</div>
+          </div>
+          <div class="subhead" style="margin-top:24px;">Languages</div>
+          <div class="cred-block" style="border-bottom:none;">
+            <div class="cred-sub">English — C2 (Proficient) &nbsp;·&nbsp; Hindi — C2 (Proficient)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="transmission">
+    <div class="wrap reveal">
+      <div class="eyebrow">File 06 — Open Channel</div>
+      <h2 class="title">Contact</h2>
+      <p style="color:var(--parchment-dim); max-width:560px;">Open to technical operations, monitoring, incident management, customer success, and support engineering roles — on-site or remote.</p>
+      <div class="channel-grid">
+        <a class="channel" href="mailto:erukv13@gmail.com"><b>Email</b> erukv13@gmail.com</a>
+        <a class="channel" href="tel:+919721712490"><b>Phone</b> +91 9721712490</a>
+        <a class="channel" href="https://www.linkedin.com/in/utkrisht-kumar-verma-2068a31b1" target="_blank" rel="noopener"><b>LinkedIn</b> /in/utkrisht-kumar-verma</a>
+        <a class="channel" href="#"><b>Base</b> New Delhi, India</a>
+      </div>
+      <a class="cta-btn" href="mailto:erukv13@gmail.com">Initiate Contact</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">Dossier compiled 2026 · Utkrisht Kumar Verma · This file self-updates on request.</div>
+  </footer>
+
+</main>
+
+<script>
+  // Boot sequence
+  const bootLines = [
+    "AUTHENTICATING CLEARANCE...",
+    "ACCESS GRANTED",
+    "LOADING DOSSIER: VERMA, UTKRISHT KUMAR",
+    "STATUS: ACTIVE"
+  ];
+  const bootEl = document.getElementById('boot-text');
+  const bootWrap = document.getElementById('boot');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function runBoot(){
+    if (reduceMotion) { bootWrap.classList.add('hidden'); return; }
+    let li = 0, ci = 0, out = "";
+    function tick(){
+      if (li >= bootLines.length){
+        setTimeout(() => bootWrap.classList.add('hidden'), 350);
+        return;
+      }
+      const line = bootLines[li];
+      if (ci <= line.length){
+        out = bootLines.slice(0, li).join("\n") + (li>0 ? "\n" : "") + line.slice(0, ci);
+        bootEl.innerHTML = out + '<span class="cursor"></span>';
+        ci++;
+        setTimeout(tick, 18);
+      } else {
+        li++; ci = 0;
+        setTimeout(tick, 220);
+      }
+    }
+    tick();
+  }
+  runBoot();
+  setTimeout(() => bootWrap.classList.add('hidden'), 3200); // safety net
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !reduceMotion){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>
